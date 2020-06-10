@@ -1,0 +1,2 @@
+Array used in my code is taken from:
+https://gist.github.com/gravitymonkey/2406023
