@@ -1,2 +1,4 @@
 Array used in my code is taken from:
 https://gist.github.com/gravitymonkey/2406023
+
+https://gist.github.com/bendc/1e6af8f2d8027f2965da
