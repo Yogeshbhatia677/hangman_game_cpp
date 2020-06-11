@@ -3,12 +3,13 @@
 #include<cstring>
 #include <cctype> 
 #include<string> 
+#include<cstdlib>
 using namespace std;
 
 int main()
 {   
     
-    
+    int hint=0;
     char duplicate[10];
     string lett;
     string copy_lett;
@@ -26,7 +27,7 @@ string my_word= words[k];
 int word_length=0;
 int count_letter=0;
 word_length=my_word.length();
- 
+ //cout<<my_word;
   
  char img[9][100]={"\n    +---+\n    |   |\n        |\n        |\n        |\n        |\n   =========", "\n    +---+\n    |   |\n    0   |\n        |\n        |\n        |\n   =========", "\n    +---+\n    |   |\n    0   |\n   /    |\n        |\n        |\n   =========", "\n    +---+\n    |   |\n    0   |\n   /|   |\n        |\n        |\n   =========", "\n    +---+\n    |   |\n    0   |\n   /|\\  |\n        |\n        |\n   =========", "\n    +---+\n    |   |\n    0   |\n   /|\\  |\n    |   |\n        |\n   =========", "\n    +---+\n    |   |\n    0   |\n   /|\\  |\n    |   |\n   /    |\n   =========", "\n    +---+\n    |   |\n    0   |\n   /|\\  |\n    |   |\n   /|\\  |\n   =========", " "}; 
   
@@ -38,7 +39,7 @@ word_length=my_word.length();
  
  int imm=0;
  int point=0;
- 
+  int hint_chk=0;
  cout<<"Available letters:\n";
  string copy_word[word_length];
  string s1="";
@@ -61,8 +62,134 @@ word_length=my_word.length();
  
  cout<<"Please guess a letter\n\n";
  
- char letter;
- cin>>letter;
+ 
+ 
+ string inpu;
+ cin>>inpu;
+ 
+
+ 
+ 
+ 
+ 
+ if(inpu.compare("hint")==0 && hint_chk==0)
+ {
+  
+  hint_chk=1;
+   
+          
+          
+  for(i=0;i<word_length;i++)
+  {
+    for(int j=0;j<point;j++)
+    {  
+    
+      if(my_word.at(i)!=duplicate[j])
+      {
+        hint=my_word.at(i);
+       }
+     }
+   }
+   int flag =0;
+   for(int i=0;i<word_length;i++)
+ {
+     if(my_word.at(i)==hint)
+     {
+         string lett(1, hint);
+          copy_lett=lett;
+        
+          flag =1;
+          copy_word[i]=lett;
+          count_letter++;
+          
+          duplicate[point]=hint;
+          point++;
+     }
+    
+ } 
+ 
+  if(flag==0)
+ {
+     cout<<"Oops! That letter is not in my word:\n\n";
+     lives--;
+      imm++;
+     if(lives==0)
+     {
+         cout<<"Lives Over,You Lost!!\n";
+         cout<<"The correct answer was:"<<my_word;
+         break;
+     }
+ }
+ else
+ {
+     cout<<"hint applied!!\n";
+     
+ }
+
+for(i=0;i<word_length;i++)
+{
+ cout<<copy_word[i];
+ s1.append(copy_word[i]); 
+ } 
+
+
+ cout<<"\n";
+ 
+ cout<<"\n";
+ 
+ if(count_letter==word_length )
+ {
+     cout<<"* * Congratulations, you won! * *";
+     break;
+ }
+ 
+ cout<<"\n\n";
+ if(flag==1)
+ {
+     
+     cout<<"Available letters:\n\n";
+     for(int i=0;i<26;i++)
+     {
+        
+        if(available_letters[i].compare(copy_lett)==0)
+        {
+            available_letters[i]="_";
+        }
+         
+      cout<<available_letters[i];
+     }
+     cout<<"\n\n";
+ }
+ else
+ {
+     cout<<"Available letters:\n\n";
+      for(int i=0;i<26;i++)
+     {
+     cout<<available_letters[i];
+     }
+ }
+ cout<<"\n\n";
+ continue;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+if(inpu.length()>1 && hint!=-1)
+ {
+  cout<<"Invalid Input,Only one letter expected";
+  continue;
+ }
+ 
+ 
+char letter;
+letter=inpu.at(0);
+
+
  
   if (isupper(letter))  
         {
@@ -142,11 +269,11 @@ if(SG==1)
 
  cout<<"\n";
  
- for(i=0;i<word_length;i++)
- {
+for(i=0;i<word_length;i++)
+{
  cout<<copy_word[i];
  s1.append(copy_word[i]); 
- }
+ } 
  
  cout<<"\n";
  
